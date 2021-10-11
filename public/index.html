@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,12 +22,25 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+  <link href="css/login_overlay.css" rel='stylesheet' type='text/css' />
+  <link href="css/style6.css" rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" href="css/shop.css" type="text/css" />
+  <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/owl.theme.css" type="text/css" media="all">
+  <link href="css/style.css" rel='stylesheet' type='text/css' />
+  <link href="css/fontawesome-all.css" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+  <link
+    href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+    rel="stylesheet">
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -39,5 +50,143 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myModal").modal();
+      });
+    </script>
+    <!-- // modal -->
+  
+    <!--search jQuery-->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="js/classie-search.js"></script>
+    <script src="js/demo1-search.js"></script>
+    <!--//search jQuery-->
+    <!-- cart-js -->
+    <script src="js/minicart.js"></script>
+    <script>
+      googles.render();
+  
+      googles.cart.on('googles_checkout', function (evt) {
+        var items, len, i;
+  
+        if (this.subtotal() > 0) {
+          items = this.items();
+  
+          for (i = 0, len = items.length; i < len; i++) {}
+        }
+      });
+    </script>
+    <!-- //cart-js -->
+    <script>
+      $(document).ready(function () {
+        $(".button-log a").click(function () {
+          $(".overlay-login").fadeToggle(200);
+          $(this).toggleClass('btn-open').toggleClass('btn-close');
+        });
+      });
+      $('.overlay-close1').on('click', function () {
+        $(".overlay-login").fadeToggle(200);
+        $(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
+        open = false;
+      });
+    </script>
+    <!-- carousel -->
+    <!-- Count-down -->
+    <!-- <script src="js/simplyCountdown.js"></script>
+    <link href="css/simplyCountdown.css" rel='stylesheet' type='text/css' />
+    <script>
+      var d = new Date();
+      simplyCountdown('simply-countdown-custom', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 2,
+        day: 25
+      });
+    </script> -->
+    <!--// Count-down -->
+    <script src="js/owl.carousel.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+          loop: true,
+          margin: 10,
+          responsiveClass: true,
+          responsive: {
+            0: {
+              items: 1,
+              nav: true
+            },
+            600: {
+              items: 2,
+              nav: false
+            },
+            900: {
+              items: 3,
+              nav: false
+            },
+            1000: {
+              items: 4,
+              nav: true,
+              loop: false,
+              margin: 20
+            }
+          }
+        })
+      })
+    </script>
+  
+    <!-- //end-smooth-scrolling -->
+  
+  
+    <!-- dropdown nav -->
+    <script>
+      $(document).ready(function () {
+        $(".dropdown").hover(
+          function () {
+            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+            $(this).toggleClass('open');
+          },
+          function () {
+            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+            $(this).toggleClass('open');
+          }
+        );
+      });
+    </script>
+    <!-- //dropdown nav -->
+    <script src="js/move-top.js"></script>
+      <script src="js/easing.js"></script>
+      <script>
+          jQuery(document).ready(function($) {
+              $(".scroll").click(function(event) {
+                  event.preventDefault();
+                  $('html,body').animate({
+                      scrollTop: $(this.hash).offset().top
+                  }, 900);
+              });
+          });
+      </script>
+      <script>
+          $(document).ready(function() {
+              /*
+                          var defaults = {
+                              containerID: 'toTop', // fading element id
+                            containerHoverID: 'toTopHover', // fading element hover id
+                            scrollSpeed: 1200,
+                            easingType: 'linear' 
+                           };
+                          */
+  
+              $().UItoTop({
+                  easingType: 'easeOutQuart'
+              });
+  
+          });
+      </script>
+      <!--// end-smoth-scrolling -->
+  
+    <script src="js/bootstrap.js"></script>
+</body>
+
 </html>
