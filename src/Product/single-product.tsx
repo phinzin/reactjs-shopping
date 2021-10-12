@@ -47,7 +47,7 @@ export default class SingleProduct extends React.Component<any, any>{
                                             <option value="null">5 Qty</option>
                                             <option value="null">6 Qty</option>
                                             <option value="null">7 Qty</option>
-                                            <option value="null">10 Qty</option>
+                                            <option value="null">11 Qty</option>
                                         </select>
                                     </div>
                                 </div>
