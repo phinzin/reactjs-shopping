@@ -11,9 +11,17 @@ app.use(function (req, res, next) {
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-app.get('/products', (req, res) => {
+app.get('/products/new-arrivals', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(readJsonFileSync("products.json", "utf8"))
+})
+app.get('/products/featured', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(readJsonFileSync("products.json", "utf8"))
+})
+app.get('/products/:id', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(readJsonFileSync("single-product.json", "utf8"))
 })
 
 app.listen(port, () => {
@@ -30,3 +38,5 @@ function readJsonFileSync(filepath, encoding) {
     var file = fs.readFileSync(filepath, encoding);
     return JSON.parse(file);
 }
+
+

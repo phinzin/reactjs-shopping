@@ -1,6 +1,23 @@
+import axios from "axios";
 import React from "react";
 
 export default class SingleProduct extends React.Component<any, any>{
+    constructor(props:any){
+        super(props)
+        this.state={
+            error:null,
+            isLoaded:false,
+            data:{}
+        }
+    }
+    componentDidMount(){
+        axios.get(`http://localhost:8080/products/`+this.props.match.params.code)
+        .then(result=>{
+            this.setState({isLoaded:true,data:result.data})
+        },error=>{
+            this.setState({isLoaded:true,error})
+        });
+    }
     render() {
         return (
             <section className="banner-bottom-wthreelayouts py-lg-5 py-3">
@@ -27,9 +44,9 @@ export default class SingleProduct extends React.Component<any, any>{
                                 </div>
                             </div>
                             <div className="col-lg-8 single-right-left simpleCart_shelfItem">
-                                <h3>Irayz Butterfly Sunglasses  (Black)</h3>
-                                <p><span className="item_price">$650</span>
-                                    <del>$1,199</del>
+                                <h3>{this.state.data.name}</h3>
+                                <p><span className="item_price">${this.state.data.gia_canh_tranh}</span>
+                                    <del>${this.state.data.gia_ban}</del>
                                 </p>
                                 <div className="rating1">
                                     <ul className="stars">

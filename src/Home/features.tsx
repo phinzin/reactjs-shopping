@@ -6,7 +6,7 @@ export default class Features extends React.Component<any, any>{
         featuredProducts: []
     }
     componentDidMount() {
-        axios.get(`http://localhost:8080/products`)
+        axios.get(`http://localhost:8080/products/featured`)
             .then(res => {
                 const featuredProducts = res.data;
                 this.setState({ featuredProducts });
@@ -21,7 +21,7 @@ export default class Features extends React.Component<any, any>{
                         <div className="product-googles-info googles">
                             <div className="men-pro-item">
                                 <div className="men-thumb-item">
-                                    <img src={product["images"][0]} className="img-fluid" alt="" />
+                                    <img src={product["anh_dai_dien"]} className="img-fluid" alt="" />
                                     <div className="men-cart-pro">
                                         <div className="inner-men-cart-pro">
                                             <a href="single.html" className="link-product-add-cart">Quick View</a>
@@ -37,7 +37,7 @@ export default class Features extends React.Component<any, any>{
                                                     <a href="single.html">{product["name"]}</a>
                                                 </h4>
                                                 <div className="grid-price mt-2">
-                                                    <span className="money ">${product["salePrice"]}</span>
+                                                    <span className="money ">${product["gia_canh_tranh"]}</span>
                                                 </div>
                                             </div>
                                             <ul className="stars">
