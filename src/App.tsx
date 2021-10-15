@@ -4,12 +4,15 @@ import Header from './Header/header';
 import Footer from './Footer/my-footer';
 import Routes from './routes'
 import { BrowserRouter as Router } from 'react-router-dom';
+import CartContextProvider from './contexts/CartContext';
 function App() {
   return (
     <Router>
       <div className="App">
         <Header />
+        <CartContextProvider>
         <Routes />
+        </CartContextProvider>
         <Footer />
       </div>
     </Router>

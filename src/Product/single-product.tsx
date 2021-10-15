@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { Product } from "../Model/product";
 
 export default class SingleProduct extends React.Component<any, any>{
     constructor(props:any){
@@ -13,7 +14,7 @@ export default class SingleProduct extends React.Component<any, any>{
     componentDidMount(){
         axios.get(`http://localhost:8080/products/`+this.props.match.params.code)
         .then(result=>{
-            this.setState({isLoaded:true,data:result.data})
+            this.setState({isLoaded:true,data:result.data as Product})
         },error=>{
             this.setState({isLoaded:true,error})
         });
@@ -29,8 +30,8 @@ export default class SingleProduct extends React.Component<any, any>{
                                     <div className="flexslider1">
 
                                         <ul className="slides">
-                                            <li data-thumb="images/d2.jpg">
-                                                <div className="thumb-image"> <img src="images/d2.jpg" data-imagezoom="true" className="img-fluid" alt=" " /> </div>
+                                            <li data-thumb={this.state.data.anh_dai_dien}>
+                                                <div className="thumb-image"> <img src={this.state.data.anh_dai_dien} data-imagezoom="true" className="img-fluid" alt=" " /> </div>
                                             </li>
                                             <li data-thumb="images/d1.jpg">
                                                 <div className="thumb-image"> <img src="images/d1.jpg" data-imagezoom="true" className="img-fluid" alt=" " /> </div>
@@ -56,30 +57,6 @@ export default class SingleProduct extends React.Component<any, any>{
                                         <li><a href="#"><i className="fa fa-star-half-o" aria-hidden="true"></i></a></li>
                                         <li><a href="#"><i className="fa fa-star-o" aria-hidden="true"></i></a></li>
                                     </ul>
-                                </div>
-                                <div className="color-quality">
-                                    <div className="color-quality-right">
-                                        <h5>Quality :</h5>
-                                        <select id="country1" className="frm-field required sect">
-                                            <option value="null">5 Qty</option>
-                                            <option value="null">6 Qty</option>
-                                            <option value="null">7 Qty</option>
-                                            <option value="null">11 Qty</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="occasional">
-                                    <h5>Types :</h5>
-                                    <div className="colr ert">
-                                        <label className="radio"><input type="radio" name="radio" checked={false} /><i></i> Irayz Butterfly(Black)</label>
-                                    </div>
-                                    <div className="colr">
-                                        <label className="radio"><input type="radio" name="radio" /><i></i> Irayz Butterfly (Grey)</label>
-                                    </div>
-                                    <div className="colr">
-                                        <label className="radio"><input type="radio" name="radio" /><i></i> Irayz Butterfly (white)</label>
-                                    </div>
-                                    <div className="clearfix"> </div>
                                 </div>
                                 <div className="occasion-cart">
                                     <div className="googles single-item singlepage">
@@ -130,60 +107,11 @@ export default class SingleProduct extends React.Component<any, any>{
                                 <div id="horizontalTab">
                                     <ul className="resp-tabs-list">
                                         <li>Description</li>
-                                        <li>Reviews</li>
-                                        <li>Information</li>
                                     </ul>
                                     <div className="resp-tabs-container">
                                         <div className="tab1">
-
                                             <div className="single_page">
                                                 <h6>Lorem ipsum dolor sit amet</h6>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-                                                    blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                    ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-                                                    magna aliqua.</p>
-                                                <p className="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-                                                    blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                    ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-                                                    magna aliqua.</p>
-                                            </div>
-                                        </div>
-                                        <div className="tab2">
-
-                                            <div className="single_page">
-                                                <div className="bootstrap-tab-text-grids">
-                                                    <div className="bootstrap-tab-text-grid">
-                                                        <div className="bootstrap-tab-text-grid-left">
-                                                            <img src="images/team1.jpg" alt=" " className="img-fluid" />
-                                                        </div>
-                                                        <div className="bootstrap-tab-text-grid-right">
-                                                            <ul>
-                                                                <li><a href="#">Admin</a></li>
-                                                                <li><a href="#"><i className="fa fa-reply-all" aria-hidden="true"></i> Reply</a></li>
-                                                            </ul>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget.Ut enim ad minima veniam,
-                                                                quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-                                                                autem vel eum iure reprehenderit.</p>
-                                                        </div>
-                                                        <div className="clearfix"> </div>
-                                                    </div>
-                                                    <div className="add-review">
-                                                        <h4>add a review</h4>
-                                                        <form action="#" method="post">
-                                                            <input className="form-control" type="text" name="Name" placeholder="Enter your email..." required={false} />
-                                                            <input className="form-control" type="email" name="Email" placeholder="Enter your email..." required={false} />
-                                                            <textarea name="Message" required={false}></textarea>
-                                                            <input type="submit" value="SEND" />
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="tab3">
-
-                                            <div className="single_page">
-                                                <h6>Irayz Butterfly Sunglasses  (Black)</h6>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
                                                     blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
                                                     ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore

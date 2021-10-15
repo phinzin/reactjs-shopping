@@ -1,10 +1,15 @@
 import React from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { IRootState } from "../config";
+import { connect } from "react-redux";
+import { addProduct, CartItem, increase } from "../contexts/cart.reducer";
+import { Product } from "../Model/product";
 
-export default class NewArrivals extends React.Component<any, any>{
+export class NewArrivals extends React.Component<any, any>{
     state = {
-        featuredProducts: []
+        featuredProducts: [],
+        cartItems:[] as Array<CartItem>
     }
     componentDidMount() {
         axios.get(`http://localhost:8080/products/new-arrivals`)
@@ -15,6 +20,9 @@ export default class NewArrivals extends React.Component<any, any>{
     }
     
     render() {
+        const isInCart = (product:Product) => {
+            return !!this.state.cartItems.find(item => item.id === product.id);
+        }
         return (
             <div>
                 <h3 className="tittle-w3layouts my-lg-4 my-4">New Arrivals</h3>
@@ -71,15 +79,20 @@ export default class NewArrivals extends React.Component<any, any>{
                                             </ul>
                                         </div>
                                         <div className="googles single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="googles_item" value="Farenheit" />
-                                                <input type="hidden" name="amount" value="575.00" />
-                                                <button type="submit" className="googles-cart pgoogles-cart">
-                                                    <i className="fas fa-cart-plus"></i>
-                                                </button>
-                                            </form>
+                                        {
+                                            isInCart(product) && 
+                                            <button onClick={() => this.props.addProduct(product)} className="googles-cart pgoogles-cart">
+                                            <i className="fas fa-cart-plus"></i>
+                                            </button>
+                                        }
+                                        {
+                                            !isInCart(product) && 
+                                            <button onClick={() => this.props.increase(product)} className="googles-cart pgoogles-cart">
+                                            <i className="fas fa-cart-plus"></i>
+                                        </button>
+                                        }
+                
+                                               
                                         </div>
                                     </div>
                                     <div className="clearfix"></div>
@@ -94,3 +107,14 @@ export default class NewArrivals extends React.Component<any, any>{
         )
     }
 }
+const mapStateToProps = (storeState:IRootState) =>({
+    error:null,
+    cartItems:storeState.cart.cartItems
+})
+const mapDispatchToProps = {
+    addProduct,
+    increase
+}
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+export default connect(mapStateToProps,mapDispatchToProps)(NewArrivals);

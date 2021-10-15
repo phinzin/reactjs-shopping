@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { IRootState } from "../config";
 
-export default class Header extends React.Component<any, any>{
+export class Header extends React.Component<any, any>{
     render() {
         return (
             <div className="banner-top container-fluid" id="home">
@@ -34,8 +36,9 @@ export default class Header extends React.Component<any, any>{
                                         <input type="hidden" name="cmd" value="_cart" />
                                         <input type="hidden" name="display" value="1" />
                                         <button className="top_googles_cart" type="submit" name="submit" value="">
-                                            My Cart
                                             <i className="fas fa-cart-arrow-down"></i>
+                                            Cart
+                                            <span>({this.props.itemCount})</span>
                                         </button>
                                     </form>
                                 </li>
@@ -253,8 +256,7 @@ export default class Header extends React.Component<any, any>{
                                     </ul>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to={"/single-product"}>Contact</Link>
-                                    {/* <a className="nav-link" href="/single-product">Contact</a> */}
+                                    <a className="nav-link" href="/single-product">Contact</a>
                                 </li>
                             </ul>
 
@@ -266,3 +268,13 @@ export default class Header extends React.Component<any, any>{
 
     }
 }
+const mapStateToProps = (storeState:IRootState) =>({
+    error:null,
+    itemCount:storeState.cart.itemCount
+})
+const mapDispatchToProps = {
+    
+}
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
